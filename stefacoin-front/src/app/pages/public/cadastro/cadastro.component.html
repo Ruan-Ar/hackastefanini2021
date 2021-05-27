@@ -1,0 +1,169 @@
+<div class="cadastro">
+  <h1 class="h1">{{ textButton + ' ' + typeUser }}</h1>
+  <form
+    class="form"
+    for="cadastroForm"
+    name="cadastro"
+    method="post"
+    #cadastroForm="ngForm"
+  >
+    <table class="table">
+      <tbody>
+        <tr>
+          <td scope="row">
+            <label for="category">Tipo de usuário:</label><br />
+            <div>
+              <input
+                type="radio"
+                id="category-1"
+                name="tipo"
+                value="1"
+                (click)="checkRadio = true; radioCheck();"
+                [(ngModel)]="user.tipo"
+                checked
+              />
+              <label for="category-1">&nbsp;Professor</label><br />
+
+              <input
+                type="radio"
+                id="category-2"
+                name="tipo"
+                value="2"
+                (click)="checkRadio = false; radioCheck();"
+                [(ngModel)]="user.tipo"
+              />
+              <label for="category-2">&nbsp;Aluno</label>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input
+                type="text"
+                name="nome"
+                id="nome"
+                class="form-control"
+                maxlength="40"
+                placeholder="Digite o nome de usuário"
+                [(ngModel)]="user.nome"
+                required
+              />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row" *ngIf="typeUser === 'Aluno'">
+            <label for="idade">Idade:</label>
+            <input
+            type="number"
+            name="idade"
+            min="17"
+            max="80"
+            id="idade"
+            class="form-control"
+            placeholder="Digite a sua idade"
+            [(ngModel)]="user.idade"
+            required
+          />
+          </td>
+          <td colspan="2" *ngIf="typeUser === 'Professor'">
+            <div class="form-group">
+              <label for="curso">Curso:</label>
+              <input
+                type="curso"
+                name="curso"
+                id="curso"
+                class="form-control"
+                [placeholder]="placeholder"
+                list="courses"
+                [(ngModel)]="user.curso"
+                required
+              />
+            </div>
+          </td>
+          <td colspan="1" *ngIf="typeUser === 'Aluno'">
+            <div class="form-group">
+              <label for="curso">Curso:</label>
+              <input
+                type="curso"
+                name="curso"
+                id="curso"
+                class="form-control"
+                [placeholder]="placeholder"
+                list="courses"
+                [(ngModel)]="user.formacao"
+                required
+              />
+            </div>
+          </td>
+          <datalist id="courses">
+            <option>PHP</option>
+            <option>Java</option>
+            <option>Node.js</option>
+            <option>Angular</option>
+            <option>Python</option>
+            <option>REST-API</option>
+            <option>Mongo DB</option>
+          </datalist>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="descricao">Email de login:</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                class="form-control"
+                maxlength="35"
+                placeholder="Digite o email"
+                [(ngModel)]="user.email"
+                required
+              />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="cor">Senha de login:</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="form-control"
+                placeholder="Digite sua senha"
+                [(ngModel)]="user.senha"
+                required
+              />
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="btn-first float-left">
+      <button
+        type="reset"
+        class="btn btn-secondary btn-form"
+        (click)="limpar()"
+      >
+        Limpar
+      </button>
+    </div>
+    <div class="float-right">
+      <button
+        type="button"
+        class="btn btn-danger btn-form"
+        (click)="cancelar()"
+      >
+        Cancelar
+      </button>
+      <button
+        name="cadastro"
+        type="submit"
+        class="btn btn-success btn-form"
+        (click)="cadastrar(user)"
+      >
+        {{ textButton }}
+      </button>
+    </div>
+  </form>
+</div>

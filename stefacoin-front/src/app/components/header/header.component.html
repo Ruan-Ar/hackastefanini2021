@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="showHeader()">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="">Stefacoin</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" *ngIf="usuario?.tipo === 1">
+          <a class="nav-link active" aria-current="page" href="#"
+            >Area do Professor</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="usuario?.tipo === 2">
+          <a class="nav-link" href="#">Area do Aluno</a>
+        </li>
+
+        <li class="nav-item" *ngIf="usuario?.tipo === 1">
+          <a class="nav-link" href="#">Listar alunos</a>
+        </li>
+        <li class="nav-item" *ngIf="usuario?.tipo === 2">
+          <a class="nav-link" href="#">Outros cursos</a>
+        </li>
+      </ul>
+      <div>
+        <strong>&nbsp;{{ usuario.nome | titlecase }}&nbsp;&nbsp;</strong>
+      </div>
+      <div class="logout-container float-right">
+        <button class="btn btn-warning" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
